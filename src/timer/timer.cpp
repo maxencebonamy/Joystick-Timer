@@ -4,9 +4,10 @@ void Timer::update(const Joystick& joystick, Screen& screen) {
     // decrement timer
     if (_isRunning && millis() - _previousTime >= 1000) {
         if (--_sec < 0) {
-            _sec = 0;
+            _sec = 59;
             if (--_min < 0) {
                 _min = 0;
+                _sec = 0;
 
                 _leftFlashing = true;
                 _rightFlashing = true;
@@ -21,7 +22,7 @@ void Timer::update(const Joystick& joystick, Screen& screen) {
         if (!_isRunning && _leftFlashing && _rightFlashing) {
             _leftFlashing = false;
         }
-        // start
+            // start
         else if (!_isRunning) {
             _leftFlashing = false;
             _rightFlashing = false;
